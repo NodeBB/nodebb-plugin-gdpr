@@ -1,0 +1,17 @@
+{
+	"id": "nodebb-plugin-gdpr",
+	"url": "https://github.com/NodeBB/nodebb-plugin-gdpr",
+	"library": "./library.js",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
+		{ "hook": "action:settings.set", "method": "onSettingsChange" }
+	],
+	"scripts": [
+		"static/lib/main.js"
+	],
+	"acpScripts": [
+		"static/lib/admin.js"
+	],
+	"templates": "static/templates"
+}
