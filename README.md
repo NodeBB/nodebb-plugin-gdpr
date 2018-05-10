@@ -1,20 +1,13 @@
 # GDPR Plugin for NodeBB
 
-A starter kit for quickly creating NodeBB plugins. Comes with a pre-setup LESS file, server side JS script with an `action:app.load` hook, and a client-side script. Most plugins need at least one of the above, so this ought to save you some time. For a full list of hooks have a look at our [wiki page](https://github.com/NodeBB/NodeBB/wiki/Hooks), and for more information about creating plugins please visit our [documentation portal](https://docs.nodebb.org/).
+This plugin allows an administrator to properly audit their existing userbase on their forum for GDPR compliance.
 
-Fork this or copy it, and using your favourite text editor find and replace all instances of `nodebb-plugin-gdpr` with `nodebb-plugin-your-plugins-name`. Change the author's name in the LICENSE and package.json files.
+The main aim for GDPR is to receive consent from every single user accessing your website.
 
-Once you're done don't forget to publish it on NPM, and make a thread about it [here](https://docs.nodebb.org/en/latest/plugins/hooks.html).
+By default, NodeBB will present new users with an outline of GDPR rules and their rights, and require their consent before continuing onwards.
 
+However, existing users will continue to access the site even though they have not provided consent. This plugin will allow you to transparently obtain consents from those users, and allow you to maintain a list of users who have not consented, if you wish to delete them in order to maintain compliance.
 
-## Hello World
+![ACP Page Example](./screenshots/acp.png)
 
-Really simple, just edit `static/lib/main.js` and paste in `console.log('hello world');`, and that's it!
-
-## Installation
-
-    npm install nodebb-plugin-gdpr
-
-## Screenshots
-
-Don't forget to add screenshots!
+**Figure 1** &mdash; The Admin Control Panel page for the plugin
