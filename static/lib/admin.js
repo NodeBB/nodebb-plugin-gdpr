@@ -1,6 +1,6 @@
 'use strict';
 
-/* globals $, app, socket */
+/* globals $, app, socket, define */
 
 define('admin/plugins/gdpr', ['settings', 'autocomplete'], function (Settings, autocomplete) {
 	var ACP = {};
@@ -14,10 +14,6 @@ define('admin/plugins/gdpr', ['settings', 'autocomplete'], function (Settings, a
 					type: 'success',
 					alert_id: 'gdpr-saved',
 					title: 'Settings Saved',
-					message: 'Please reload your NodeBB to apply these settings',
-					clickfn: function () {
-						socket.emit('admin.reload');
-					},
 				});
 			});
 		});

@@ -7,6 +7,8 @@ var meta = module.parent.require('./meta');
 var user = module.parent.require('./user');
 var batch = module.parent.require('./batch');
 
+var winston = module.parent.require('winston');
+
 var controllers = require('./lib/controllers');
 
 var plugin = {};
@@ -76,6 +78,22 @@ plugin.addAdminNavigation = function (header, callback) {
 	});
 
 	callback(null, header);
+};
+
+plugin.appendConfig = function (config, callback) {
+	db.getObjectField('user:' + config.uid, 'gdpr_consent', function (err, consented) {
+		if (err) {
+			winston.error('[plugin/gdpr] Could not append info to uid  ' + config.uid + ': ' + err.message);
+			return setImmediate(callback, null, config);
+		}
+
+		config.gdpr = {
+			require: !!(plugin.settings.require_consent === 'on'),
+			given: !!consented,
+		};
+
+		callback(null, config);
+	});
 };
 
 module.exports = plugin;

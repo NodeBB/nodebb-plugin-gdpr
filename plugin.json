@@ -5,7 +5,8 @@
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "action:settings.set", "method": "onSettingsChange" }
+		{ "hook": "action:settings.set", "method": "onSettingsChange" },
+		{ "hook": "filter:config.get", "method": "appendConfig" }
 	],
 	"scripts": [
 		"static/lib/main.js"
