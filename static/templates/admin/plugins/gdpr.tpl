@@ -1,7 +1,7 @@
 <form role="form" class="gdpr-settings">
 	<div class="row">
 		<div class="col-sm-2 col-xs-12 settings-header">General</div>
-		<div class="col-sm-10 col-xs-12">
+		<div class="col-sm-5 col-xs-12">
 			<p class="lead">
 				This plugin allows you to administer the consent states for the users in your forum.
 			</p>
@@ -26,12 +26,7 @@
 				</p>
 			</div>
 		</div>
-	</div>
-
-	<hr />
-
-	<div class="row">
-		<div class="col-xs-12 col-sm-4">
+		<div class="col-sm-5 col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">User Search</h3>
@@ -74,19 +69,50 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-8">
+	</div>
+
+	<hr />
+
+	<div class="row">
+		<div class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Users who have not provided consent</h3>
+					<h3 class="panel-title">Users</h3>
 				</div>
 				<div class="panel-body">
-					<!-- BEGIN users -->
-					<!-- IF ../picture -->
-					<a href="{config.relative_path}/user/{../userslug}"><img class="avatar avatar-sm avatar-rounded" src="{../picture}" title="{../username}" /></a>
-					<!-- ELSE -->
-					<div class="avatar avatar-sm" style="background-color: {../icon:bgColor};" title="{../username}">{../icon:text}</div>
-					<!-- ENDIF ../picture -->
-					<!-- END -->
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th colspan="2">User</th>
+								<th>Consented</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- BEGIN users -->
+							<tr>
+								<td>
+									<!-- IF ../picture -->
+									<a href="{config.relative_path}/user/{../userslug}"><img class="avatar avatar-sm" src="{../picture}" title="{../username}" /></a>
+									<!-- ELSE -->
+									<div class="avatar avatar-sm" style="background-color: {../icon:bgColor};" title="{../username}">{../icon:text}</div>
+									<!-- ENDIF ../picture -->
+								</td>
+								<td>
+									{../username}
+								</td>
+								<td>
+									<!-- IF ../gdpr_consent -->
+									<span class="label label-success"><i class="fa fa-check"></i></span>
+									<!-- ELSE -->
+									<span class="label label-danger"><i class="fa fa-times"></i></span>
+									<!-- END -->
+								</td>
+							</tr>
+							<!-- END -->
+						</tbody>
+					</table>
+
+					<!-- IMPORT partials/paginator.tpl -->
 				</div>
 			</div>
 		</div>
