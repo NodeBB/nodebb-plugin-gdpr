@@ -1,16 +1,18 @@
 'use strict';
 
-/* globals window, document, config, $, bootbox, ajaxify, app */
+/* globals window, document, config, $, bootbox, ajaxify, app, socket */
 
 $(document).ready(function () {
 	var gdpr = {};
 
-	gdpr.check = function () {
+	gdpr.check = function (evt, data) {
 		if (!config || !config.gdpr) {
 			return setTimeout(gdpr.check, 500);
+		} else if (data.tpl_url === 'account/consent') {
+			return gdpr.refresh();
 		}
 
-		if (app.user.uid && config.gdpr.require && !config.gdpr.given && ajaxify.currentPage !== 'user/' + app.user.userslug + '/consent') {
+		if (app.user.uid && config.gdpr.require && !config.gdpr.given) {
 			bootbox.alert({
 				title: '[[user:consent.lead]]',
 				message: '[[user:consent.not_received]]',
@@ -27,6 +29,16 @@ $(document).ready(function () {
 				},
 			});
 		}
+	};
+
+	gdpr.refresh = function () {
+		socket.emit('plugins.gdpr.refresh', {}, function (err, given) {
+			if (err) {
+				app.alertError(err.message);
+			}
+
+			config.gdpr.given = given === '1';
+		});
 	};
 
 	$(window).on('action:ajaxify.end', gdpr.check);

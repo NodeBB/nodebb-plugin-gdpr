@@ -18,6 +18,13 @@ plugin.init = function (params, callback) {
 	var hostMiddleware = params.middleware;
 	var hostControllers = params.controllers;
 
+	var SocketPlugins = require.main.require('./src/socket.io/plugins');
+
+	SocketPlugins.gdpr = {};
+	SocketPlugins.gdpr.refresh = function (socket, data, callback) {
+		db.getObjectField('user:' + socket.uid, 'gdpr_consent', callback);
+	};
+
 	router.get('/admin/plugins/gdpr', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
 	router.get('/api/admin/plugins/gdpr', controllers.renderAdminPage);
 
