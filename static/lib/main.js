@@ -10,7 +10,7 @@ $(document).ready(function () {
 			return setTimeout(gdpr.check, 500);
 		}
 
-		if (config.gdpr.require && !config.gdpr.given && ajaxify.currentPage !== 'user/' + app.user.userslug + '/consent') {
+		if (app.user.uid && config.gdpr.require && !config.gdpr.given && ajaxify.currentPage !== 'user/' + app.user.userslug + '/consent') {
 			bootbox.alert({
 				title: '[[user:consent.lead]]',
 				message: '[[user:consent.not_received]]',
