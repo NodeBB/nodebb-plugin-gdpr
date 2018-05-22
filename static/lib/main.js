@@ -37,7 +37,7 @@ $(document).ready(function () {
 				app.alertError(err.message);
 			}
 
-			config.gdpr.given = given === '1';
+			config.gdpr.given = parseInt(given, 10) === 1;
 		});
 	};
 
