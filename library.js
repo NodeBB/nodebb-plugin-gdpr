@@ -81,7 +81,7 @@ plugin.getUsers = function (page, callback) {
 		}
 
 		users = users.map((user, idx) => {
-			user.gdpr_consent = user.gdpr_consent === 1;
+			user.gdpr_consent = parseInt(user.gdpr_consent, 10) === 1;
 			return Object.assign(user, profiles[idx]);
 		});
 
