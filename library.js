@@ -111,7 +111,7 @@ plugin.appendConfig = function (config, callback) {
 
 		config.gdpr = {
 			require: !!(plugin.settings.require_consent === 'on'),
-			given: !!consented,
+			given: !!parseInt(consented, 10),
 		};
 
 		callback(null, config);

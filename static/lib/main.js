@@ -10,6 +10,9 @@ $(document).ready(function () {
 			return setTimeout(gdpr.check, 500);
 		} else if (data.tpl_url === 'account/consent') {
 			return gdpr.refresh();
+		} else if (data.url === 'register/complete') {
+			// Do nothing, user consents here!
+			return;
 		}
 
 		if (app.user.uid && config.gdpr.require && !config.gdpr.given) {
