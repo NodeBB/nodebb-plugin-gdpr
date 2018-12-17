@@ -2,12 +2,12 @@
 
 var async = require('async');
 
-var db = module.parent.require('./database');
-var meta = module.parent.require('./meta');
-var user = module.parent.require('./user');
-var pagination = module.parent.require('./pagination');
+var db = require.main.require('./src/database');
+var meta = require.main.require('./src/meta');
+var user = require.main.require('./src/user');
+var pagination = require.main.require('./src/pagination');
 
-var winston = module.parent.require('winston');
+var winston = require.main.require('winston');
 
 var controllers = require('./lib/controllers');
 
