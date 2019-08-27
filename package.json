@@ -5,7 +5,7 @@
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/julianlam/nodebb-plugin-gdpr"
+    "url": "https://github.com/NodeBB/nodebb-plugin-gdpr"
   },
   "keywords": [
     "nodebb",
@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/julianlam/nodebb-plugin-gdpr/issues"
+    "url": "https://github.com/NodeBB/nodebb-plugin-gdpr/issues"
   },
   "readmeFilename": "README.md",
   "nbbpm": {
