@@ -11,7 +11,7 @@ var controllers = require('./lib/controllers');
 
 var plugin = {};
 
-plugin.init = ({ router, middleware: hostMiddleware }) =>  {
+plugin.init = async ({ router, middleware: hostMiddleware }) => {
 	var SocketPlugins = require.main.require('./src/socket.io/plugins');
 
 	SocketPlugins.gdpr = {};
