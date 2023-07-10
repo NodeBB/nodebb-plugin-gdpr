@@ -9,9 +9,11 @@ var pagination = require.main.require('./src/pagination');
 
 var controllers = require('./lib/controllers');
 
+const routeHelpers = require.main.require('./src/routes/helpers');
+
 var plugin = {};
 
-plugin.init = async ({ router, middleware: hostMiddleware }) => {
+plugin.init = async ({ router }) => {
 	var SocketPlugins = require.main.require('./src/socket.io/plugins');
 
 	SocketPlugins.gdpr = {};
@@ -19,8 +21,7 @@ plugin.init = async ({ router, middleware: hostMiddleware }) => {
 		db.getObjectField('user:' + socket.uid, 'gdpr_consent', callback);
 	};
 
-	router.get('/admin/plugins/gdpr', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
-	router.get('/api/admin/plugins/gdpr', controllers.renderAdminPage);
+	routeHelpers.setupAdminPageRoute(router, '/admin/plugins/gdpr', controllers.renderAdminPage);
 };
 
 plugin.getUsers = function (page, callback) {
